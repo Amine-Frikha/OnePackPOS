@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onepack/Models/FuncList.dart';
-import 'package:onepack/Widgets/Widgets.dart';
 import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Widgets/custom_widgets.dart';
 import 'package:onepack/global/constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool tapped = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +39,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              'Dashboard',
+                              'Tableau de bord',
                               style: Theme.of(context).textTheme.headline6,
                             ),
                           ),
                           Container(
-                              child: Text(
-                            "12:000",
-                            style: Theme.of(context).textTheme.headline6,
-                          ))
+                            decoration: BoxDecoration(
+                              color: secondaryColor,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                              border: Border.all(color: Color(0xFF18184E)),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: defaultPadding / 2),
+                                  child: Text("12:00:00"),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -61,12 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisSpacing: defaultPadding,
                           childAspectRatio: 1.0,
                         ),
-                        itemBuilder: (context, index) => GestureDetector(
+                        itemBuilder: (context, index) => InkWell(
                           onTap: () {
                             Navigator.pushNamed(
                                 context, '/${funcListTitle[index]}');
                           },
-                          child: CustomButtons.funcButtons(
+                          child: CustomWidgets.funcButtons(
                             title: funcListTitle[index],
                             iconPath: funcListIcon[index],
                           ),
