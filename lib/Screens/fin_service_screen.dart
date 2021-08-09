@@ -4,14 +4,14 @@ import 'package:onepack/Widgets/popUp.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
-class VenteScreen extends StatefulWidget {
-  VenteScreen({Key? key}) : super(key: key);
+class FinServiceScreen extends StatefulWidget {
+  FinServiceScreen({Key? key}) : super(key: key);
 
   @override
-  _VenteScreenState createState() => _VenteScreenState();
+  _FinServiceScreenState createState() => _FinServiceScreenState();
 }
 
-class _VenteScreenState extends State<VenteScreen> {
+class _FinServiceScreenState extends State<FinServiceScreen> {
   static const int numItems = 10;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _VenteScreenState extends State<VenteScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Historique des Ventes",
+                      "Demandes de fin de service",
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(
@@ -47,42 +47,61 @@ class _VenteScreenState extends State<VenteScreen> {
                           color: Colors.black,
                         ),
                         headingTextStyle: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           color: Colors.black,
                         ),
                         columnSpacing: defaultPadding,
                         minWidth: 600,
                         columns: [
                           DataColumn(
-                            label: Text("Référence commande"),
-                          ),
-                          DataColumn(
-                            label: Text("Montant (DT)"),
-                          ),
-                          DataColumn(
                             label: Text("Serveur"),
+                          ),
+                          DataColumn(
+                            label: Text("Horaire"),
+                          ),
+                          DataColumn(
+                            label: Text("Durée session"),
+                          ),
+                          DataColumn(
+                            label: Text("Action"),
                           ),
                         ],
                         rows: List<DataRow>.generate(
                           numItems,
                           (int index) => DataRow(
                             cells: <DataCell>[
-                              DataCell(
-                                Text('$index'),
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) =>
-                                        PopUp.buildPopupDialogTable(
-                                      context,
-                                      'Details de la commande',
-                                      'liste des produits',
-                                    ),
-                                  );
-                                },
-                              ),
+                              DataCell(Text('$index')),
                               DataCell(Text('AF,fgbh')),
                               DataCell(Text('Sucre')),
+                              DataCell(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 40,
+                                      width: 40,
+                                      child: TextButton(
+                                        onPressed: () {},
+                                        child: Icon(
+                                          Icons.check_circle,
+                                          color: Colors.green,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 40,
+                                      width: 40,
+                                      child: TextButton(
+                                        onPressed: () {},
+                                        child: Icon(
+                                          Icons.cancel_rounded,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),

@@ -1,7 +1,7 @@
 import 'package:math_expressions/math_expressions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:onepack/Widgets/CalcButton.dart';
+import 'package:onepack/Widgets/calc_button.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 
 class CalcApp extends StatefulWidget {

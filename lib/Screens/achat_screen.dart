@@ -33,7 +33,7 @@ class _AchatScreenState extends State<AchatScreen> {
                   children: [
                     Text(
                       "Gestion Des Achats",
-                      style: TextStyle(fontSize: 25),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(
                       height: 40,

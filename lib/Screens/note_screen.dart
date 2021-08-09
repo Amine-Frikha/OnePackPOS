@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onepack/Widgets/custom_widgets.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
@@ -30,33 +31,30 @@ class _NoteScreenState extends State<NoteScreen> {
                   children: [
                     Text(
                       "Notes Personnelles",
-                      style: TextStyle(fontSize: 20),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(
                       height: 40,
                     ),
+                    CustomWidgets.noteField(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: primaryColor.withOpacity(0.9),
+                            primary: primaryColor,
+                            textStyle: const TextStyle(fontSize: 17),
+                          ),
                           onPressed: () {},
-                          child: Icon(
-                            Icons.cancel,
-                            color: Colors.red,
+                          child: Text(
+                            'Ajouter une note',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
-                    ),
-                    Flexible(
-                      child: TextField(
-                        keyboardType: TextInputType.multiline,
-                        minLines: 5,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Rédiger Une Note',
-                        ),
-                      ),
                     ),
                   ],
                 ),

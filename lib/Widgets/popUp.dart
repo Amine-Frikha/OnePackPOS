@@ -33,62 +33,47 @@ class PopUp {
     // final _formKey = GlobalKey<FormState>();
     return SimpleDialog(
       children: [
-        Form(
-          // key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
+        Container(
+          padding: EdgeInsets.all(8.0),
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width * 0.32,
+          child: Form(
+            // key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Fournisseur',
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Adresse Fournisseur',
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Num Tele Fournisseur',
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Produits',
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Quantité Acheté',
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Prix Unitaire',
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
+                ElevatedButton(
                   style: TextButton.styleFrom(
                     backgroundColor: primaryColor.withOpacity(0.9),
                     primary: primaryColor,
@@ -106,8 +91,8 @@ class PopUp {
                     // }
                   },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
@@ -120,65 +105,71 @@ class PopUp {
     // final _formKey = GlobalKey<FormState>();
     return SimpleDialog(
       children: [
-        Form(
-          // key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Catégorie',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Sous-catégorie',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Quantité',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Prix Unitaire de vente',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: primaryColor.withOpacity(0.9),
-                    primary: primaryColor,
-                    textStyle: const TextStyle(fontSize: 17),
-                  ),
-                  child: Text(
-                    "Ajouter",
-                    style: TextStyle(
-                      color: Colors.white,
+        Container(
+          padding: EdgeInsets.all(8.0),
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width * 0.32,
+          child: Form(
+            // key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Catégorie',
                     ),
                   ),
-                  onPressed: () {
-                    // if (_formKey.currentState.validate()) {
-                    //   _formKey.currentState.save();
-                    // }
-                  },
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Sous-catégorie',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Quantité',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Prix Unitaire de vente',
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor.withOpacity(0.9),
+                      primary: primaryColor,
+                      textStyle: const TextStyle(fontSize: 17),
+                    ),
+                    child: Text(
+                      "Ajouter",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () {
+                      // if (_formKey.currentState.validate()) {
+                      //   _formKey.currentState.save();
+                      // }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

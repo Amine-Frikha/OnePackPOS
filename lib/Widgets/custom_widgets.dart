@@ -3,6 +3,44 @@ import 'package:flutter_svg/svg.dart';
 import 'package:onepack/global/constants.dart';
 
 class CustomWidgets {
+  static Widget noteField() {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: Icon(
+                  Icons.cancel,
+                  color: Colors.red,
+                ),
+              ),
+            ],
+          ),
+          Container(
+            child: SingleChildScrollView(
+              child: Container(
+                color: secondaryColor,
+                child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  minLines: 5,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Rédiger Une Note',
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   static Widget funcButtons({
     required String title,
     required String iconPath,
@@ -38,11 +76,12 @@ class CustomWidgets {
               ),
             ],
           ),
-          Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 25),
+          Flexible(
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 25),
+              textAlign: TextAlign.center,
+            ),
           ),
           SizedBox(
             height: 20,
