@@ -4,14 +4,14 @@ import 'package:onepack/Widgets/popUp.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
-class StockScreen extends StatefulWidget {
-  const StockScreen({Key? key}) : super(key: key);
+class FournisseurScreen extends StatefulWidget {
+  const FournisseurScreen({Key? key}) : super(key: key);
 
   @override
-  _StockScreenState createState() => _StockScreenState();
+  _FournisseurScreenState createState() => _FournisseurScreenState();
 }
 
-class _StockScreenState extends State<StockScreen> {
+class _FournisseurScreenState extends State<FournisseurScreen> {
   static const int numItems = 10;
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _StockScreenState extends State<StockScreen> {
                           ),
                         ),
                         Text(
-                          "Gestion De Stock",
+                          "Gestion Des Fournisseurs",
                           style: Theme.of(context).textTheme.headline6,
                         ),
                       ],
@@ -69,13 +69,16 @@ class _StockScreenState extends State<StockScreen> {
                             ),
                             columns: [
                               DataColumn(
-                                label: Text("Catégorie"),
+                                label: Text("Nom"),
                               ),
                               DataColumn(
-                                label: Text("Sous-catégorie"),
+                                label: Text("Prénom"),
                               ),
                               DataColumn(
-                                label: Text("Quantité"),
+                                label: Text("Adresse"),
+                              ),
+                              DataColumn(
+                                label: Text("Téléphone"),
                               ),
                               DataColumn(
                                 label: Text("Action"),
@@ -87,6 +90,7 @@ class _StockScreenState extends State<StockScreen> {
                                 cells: <DataCell>[
                                   DataCell(Text('cat$index')),
                                   DataCell(Text('Sucre')),
+                                  DataCell(Text('732')),
                                   DataCell(Text('521')),
                                   DataCell(
                                     Row(
@@ -102,7 +106,7 @@ class _StockScreenState extends State<StockScreen> {
                                                 context: context,
                                                 builder: (BuildContext
                                                         context) =>
-                                                    buildPopupDialogFormStock(
+                                                    buildPopupDialogFormFournisseur(
                                                   context,
                                                   'Modifier',
                                                 ),
@@ -163,14 +167,14 @@ class _StockScreenState extends State<StockScreen> {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) =>
-                                  buildPopupDialogFormStock(
+                                  buildPopupDialogFormFournisseur(
                                 context,
                                 'Ajouter',
                               ),
                             );
                           },
                           child: Text(
-                            'Ajouter un produit',
+                            'Ajouter un Fournisseur',
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -188,7 +192,7 @@ class _StockScreenState extends State<StockScreen> {
     );
   }
 
-  static Widget buildPopupDialogFormStock(
+  static Widget buildPopupDialogFormFournisseur(
     BuildContext context,
     String buttonText,
   ) {
@@ -207,17 +211,22 @@ class _StockScreenState extends State<StockScreen> {
               children: <Widget>[
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'Catégorie',
+                    labelText: 'Nom',
                   ),
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'Sous-catégorie',
+                    labelText: 'Prénom',
                   ),
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'Quantité',
+                    labelText: 'Adresse',
+                  ),
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Téléphone',
                   ),
                 ),
                 ElevatedButton(

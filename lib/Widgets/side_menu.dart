@@ -26,11 +26,6 @@ class SideMenu extends StatelessWidget {
                 },
               ),
               DrawerListTile(
-                title: "Notification",
-                svgSrc: "assets/icons/menu_notification.svg",
-                press: () {},
-              ),
-              DrawerListTile(
                 title: "Calculatrice",
                 svgSrc: "assets/icons/calcul.svg",
                 press: () {

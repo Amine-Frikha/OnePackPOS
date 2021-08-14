@@ -4,14 +4,14 @@ import 'package:onepack/Widgets/popUp.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
-class AchatScreen extends StatefulWidget {
-  const AchatScreen({Key? key}) : super(key: key);
+class GestionAchatScreen extends StatefulWidget {
+  const GestionAchatScreen({Key? key}) : super(key: key);
 
   @override
-  _AchatScreenState createState() => _AchatScreenState();
+  _GestionAchatScreenState createState() => _GestionAchatScreenState();
 }
 
-class _AchatScreenState extends State<AchatScreen> {
+class _GestionAchatScreenState extends State<GestionAchatScreen> {
   static const int numItems = 10;
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,23 @@ class _AchatScreenState extends State<AchatScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Gestion Des Achats",
-                      style: Theme.of(context).textTheme.headline6,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: primaryColor,
+                          ),
+                        ),
+                        Text(
+                          "Gestion Des Achats",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 40,
@@ -86,8 +100,9 @@ class _AchatScreenState extends State<AchatScreen> {
                                       showDialog(
                                         context: context,
                                         builder: (BuildContext context) =>
-                                            PopUp.buildPopupDialogTable(
+                                            PopUp.buildPopupDialog(
                                           context,
+                                          1,
                                           'Details du fournisseur',
                                           'Nom : Prenom : Adresse :',
                                         ),
@@ -124,7 +139,15 @@ class _AchatScreenState extends State<AchatScreen> {
                                           height: 40,
                                           width: 40,
                                           child: TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    buildPopupDialogFormAchat(
+                                                        context, 'Modifier'),
+                                              );
+                                            },
                                             child: Icon(
                                               Icons.edit,
                                               color: Colors.green,
@@ -135,7 +158,22 @@ class _AchatScreenState extends State<AchatScreen> {
                                           height: 40,
                                           width: 40,
                                           child: TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    PopUp
+                                                        .buildDoublePopupDialog(
+                                                  context,
+                                                  2,
+                                                  'Confirmer votre action',
+                                                  'Voulez-vous vraiment supprimer cette ligne?',
+                                                  'Succés',
+                                                  'Ligne supprimée',
+                                                ),
+                                              );
+                                            },
                                             child: Icon(
                                               Icons.delete,
                                               color: Colors.red,
@@ -165,9 +203,7 @@ class _AchatScreenState extends State<AchatScreen> {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) =>
-                                  PopUp.buildPopupDialogFormAchat(
-                                context,
-                              ),
+                                  buildPopupDialogFormAchat(context, 'Ajouter'),
                             );
                           },
                           child: Text(
@@ -186,6 +222,69 @@ class _AchatScreenState extends State<AchatScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  static Widget buildPopupDialogFormAchat(
+    BuildContext context,
+    String buttonText,
+  ) {
+    // final _formKey = GlobalKey<FormState>();
+    return SimpleDialog(
+      children: [
+        Container(
+          padding: EdgeInsets.all(8.0),
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width * 0.32,
+          child: Form(
+            // key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Produits',
+                  ),
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Quantité Acheté',
+                  ),
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Prix Unitaire',
+                  ),
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Balance',
+                  ),
+                ),
+                ElevatedButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: primaryColor.withOpacity(0.9),
+                    primary: primaryColor,
+                    textStyle: const TextStyle(fontSize: 17),
+                  ),
+                  child: Text(
+                    buttonText,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    // if (_formKey.currentState.validate()) {
+                    //   _formKey.currentState.save();
+                    // }
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

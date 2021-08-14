@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:onepack/Models/FuncListDashboard.dart';
 import 'package:onepack/Widgets/custom_widgets.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
-class PersonnelScreen extends StatefulWidget {
-  const PersonnelScreen({Key? key}) : super(key: key);
+class DashboardBuilder extends StatefulWidget {
+  final String title;
+  final List titleList;
+  final List iconList;
+  DashboardBuilder({
+    Key? key,
+    required this.title,
+    required this.titleList,
+    required this.iconList,
+  }) : super(key: key);
 
   @override
-  _PersonnelScreenState createState() => _PersonnelScreenState();
+  _DashboardBuilderState createState() => _DashboardBuilderState();
 }
 
-class _PersonnelScreenState extends State<PersonnelScreen> {
+class _DashboardBuilderState extends State<DashboardBuilder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +37,24 @@ class _PersonnelScreenState extends State<PersonnelScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Gestion de personnel",
-                      style: Theme.of(context).textTheme.headline6,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        if (ModalRoute.of(context)!.settings.name != '/Home')
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: primaryColor,
+                            ),
+                          ),
+                        Text(
+                          "${widget.title}",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 40,
@@ -41,9 +63,9 @@ class _PersonnelScreenState extends State<PersonnelScreen> {
                       child: GridView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: 2,
+                        itemCount: widget.titleList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
+                          crossAxisCount: 3,
                           crossAxisSpacing: defaultPadding,
                           mainAxisSpacing: defaultPadding,
                           childAspectRatio: 1.0,
@@ -52,12 +74,12 @@ class _PersonnelScreenState extends State<PersonnelScreen> {
                           onTap: () {
                             Navigator.pushNamed(
                                 context,
-                                '/${funcListPersonnelTitle[index]}'
+                                '/${widget.titleList[index]}'
                                     .replaceAll(' ', '-'));
                           },
                           child: CustomWidgets.funcButtons(
-                            title: funcListPersonnelTitle[index],
-                            iconPath: funcListPersonnelIcon[index],
+                            title: widget.titleList[index],
+                            iconPath: widget.iconList[index],
                           ),
                         ),
                       ),

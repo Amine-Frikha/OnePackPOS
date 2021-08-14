@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:onepack/Screens/calc_screen.dart';
-import 'Screens/achat_screen.dart';
-import 'Screens/dashboard_screen.dart';
-import 'Screens/fin_service_screen.dart';
+import 'package:onepack/Screens/fournisseur_screen.dart';
+import 'Models/FuncListDashboard.dart';
+import 'Screens/log_serveurs_screen.dart';
+import 'Widgets/dashboard_builder.dart';
+import 'Screens/gestion_achat_screen.dart';
+import 'Screens/session_screen.dart';
 import 'Screens/login_screen.dart';
 import 'Screens/note_screen.dart';
-import 'Screens/personnel_screen.dart';
 import 'Screens/stock_screen.dart';
 import 'Screens/vente_screen.dart';
 import 'global/constants.dart';
@@ -20,16 +22,34 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => LoginScreen(),
-        '/Home': (context) => Dashboard(),
+        '/Home': (context) => DashboardBuilder(
+              title: 'Tableau de bord — Gérant',
+              titleList: funcListTitle,
+              iconList: funcListIcon,
+            ),
         '/Ventes': (context) => VenteScreen(),
-        '/Achats': (context) => AchatScreen(),
+        '/Achats': (context) => DashboardBuilder(
+              title: 'Achats',
+              titleList: funcListAchatTitle,
+              iconList: funcListAchatIcon,
+            ),
+        '/Gestion-Des-Achats': (context) => GestionAchatScreen(),
+        '/Gestion-Des-Fournisseurs': (context) => FournisseurScreen(),
         '/Notes': (context) => NoteScreen(),
         '/Calc': (context) => CalcApp(),
         '/Stock': (context) => StockScreen(),
-        '/Personnel': (context) => PersonnelScreen(),
-        '/Demandes-de-fin-de-service': (context) => FinServiceScreen(),
-
-        // '/Statistiques': (context) => StatScreen(),
+        '/Session': (context) => SessionScreen(),
+        '/Statistiques': (context) => DashboardBuilder(
+              title: 'Statistiques',
+              titleList: funcListStatTitle,
+              iconList: funcListStatIcon,
+            ),
+        '/Serveurs': (context) => DashboardBuilder(
+              title: 'Serveurs',
+              titleList: funcListServeurTitle,
+              iconList: funcListServeurIcon,
+            ),
+        '/Log': (context) => LogServeurScreen(),
       },
       title: 'POS System',
       theme: ThemeData.light().copyWith(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/custom_widgets.dart';
+import 'package:onepack/Models/Note.dart';
+import 'package:onepack/Widgets/popUp.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
@@ -11,6 +12,22 @@ class NoteScreen extends StatefulWidget {
 }
 
 class _NoteScreenState extends State<NoteScreen> {
+  List<Note> _notes = [];
+
+  var _contenuTextFieldController = TextEditingController();
+
+  _onSubmit() async {
+    setState(() {
+      _notes.add(
+        Note(
+          contenu: _contenuTextFieldController.text,
+        ),
+      );
+    });
+    if (Navigator.of(context).canPop()) Navigator.of(context).pop();
+    _contenuTextFieldController.text = '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,14 +46,35 @@ class _NoteScreenState extends State<NoteScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Notes Personnelles",
-                      style: Theme.of(context).textTheme.headline6,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: primaryColor,
+                          ),
+                        ),
+                        Text(
+                          "Notes Personnels",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 40,
                     ),
-                    CustomWidgets.noteField(),
+                    Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemBuilder: (context, index) =>
+                            noteWidget(_notes[index]),
+                        itemCount: _notes.length,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -46,9 +84,53 @@ class _NoteScreenState extends State<NoteScreen> {
                             primary: primaryColor,
                             textStyle: const TextStyle(fontSize: 17),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return SimpleDialog(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            TextFormField(
+                                              controller:
+                                                  _contenuTextFieldController,
+                                              maxLines: 8,
+                                              minLines: 6,
+                                              decoration: const InputDecoration(
+                                                labelText: 'Contenu',
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              style: TextButton.styleFrom(
+                                                backgroundColor: primaryColor
+                                                    .withOpacity(0.9),
+                                                primary: primaryColor,
+                                                textStyle: const TextStyle(
+                                                    fontSize: 17),
+                                              ),
+                                              child: Text(
+                                                "Ajouter",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              onPressed: () => _onSubmit(),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
                           child: Text(
-                            'Ajouter une note',
+                            'Ajouter note',
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -63,6 +145,44 @@ class _NoteScreenState extends State<NoteScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget noteWidget(Note note) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => PopUp.buildPopupDialog(
+                    context,
+                    2,
+                    'Confirmer votre action',
+                    'Voulez-vous vraiment supprimer cette note?',
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.cancel,
+                color: Colors.red,
+              ),
+            ),
+          ],
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.2,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: secondaryColor,
+            border: Border.all(color: primaryColor),
+          ),
+          child: Text('${note.contenu}'),
+        ),
+      ],
     );
   }
 }

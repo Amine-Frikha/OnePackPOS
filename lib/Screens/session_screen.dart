@@ -4,14 +4,14 @@ import 'package:onepack/Widgets/popUp.dart';
 import 'package:onepack/Widgets/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
-class FinServiceScreen extends StatefulWidget {
-  FinServiceScreen({Key? key}) : super(key: key);
+class SessionScreen extends StatefulWidget {
+  SessionScreen({Key? key}) : super(key: key);
 
   @override
-  _FinServiceScreenState createState() => _FinServiceScreenState();
+  _SessionScreenState createState() => _SessionScreenState();
 }
 
-class _FinServiceScreenState extends State<FinServiceScreen> {
+class _SessionScreenState extends State<SessionScreen> {
   static const int numItems = 10;
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,23 @@ class _FinServiceScreenState extends State<FinServiceScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Demandes de fin de service",
-                      style: Theme.of(context).textTheme.headline6,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: primaryColor,
+                          ),
+                        ),
+                        Text(
+                          "Demandes De Fin De Service",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: 40,
@@ -81,7 +95,20 @@ class _FinServiceScreenState extends State<FinServiceScreen> {
                                       height: 40,
                                       width: 40,
                                       child: TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                PopUp.buildDoublePopupDialog(
+                                              context,
+                                              2,
+                                              'Confirmer votre action',
+                                              'Voulez-vous vraiment accepter la demande?',
+                                              'Succés',
+                                              'nom serveur, produits vendus,revenue,qte clients',
+                                            ),
+                                          );
+                                        },
                                         child: Icon(
                                           Icons.check_circle,
                                           color: Colors.green,
@@ -92,7 +119,20 @@ class _FinServiceScreenState extends State<FinServiceScreen> {
                                       height: 40,
                                       width: 40,
                                       child: TextButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                PopUp.buildDoublePopupDialog(
+                                              context,
+                                              2,
+                                              'Confirmer votre action',
+                                              'Voulez-vous vraiment accepter la demande?',
+                                              'Succés',
+                                              'Demande rejetée',
+                                            ),
+                                          );
+                                        },
                                         child: Icon(
                                           Icons.cancel_rounded,
                                           color: Colors.red,
