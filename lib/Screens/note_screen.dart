@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:onepack/Models/Note.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class NoteScreen extends StatefulWidget {
@@ -46,24 +47,7 @@ class _NoteScreenState extends State<NoteScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
-                          ),
-                        ),
-                        Text(
-                          "Notes Personnels",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+                    Header(title: 'Notes Personnels'),
                     SizedBox(
                       height: 40,
                     ),
@@ -180,7 +164,10 @@ class _NoteScreenState extends State<NoteScreen> {
             color: secondaryColor,
             border: Border.all(color: primaryColor),
           ),
-          child: Text('${note.contenu}'),
+          child: Padding(
+            padding: const EdgeInsets.all(defaultPadding),
+            child: Text('${note.contenu}'),
+          ),
         ),
       ],
     );

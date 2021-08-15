@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class FournisseurScreen extends StatefulWidget {
@@ -31,24 +32,7 @@ class _FournisseurScreenState extends State<FournisseurScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
-                          ),
-                        ),
-                        Text(
-                          "Gestion Des Fournisseurs",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+                    Header(title: 'Gestion Des fournisseur'),
                     SizedBox(
                       height: 40,
                     ),
@@ -130,7 +114,6 @@ class _FournisseurScreenState extends State<FournisseurScreen> {
                                                     PopUp
                                                         .buildDoublePopupDialog(
                                                   context,
-                                                  2,
                                                   'Confirmer votre action',
                                                   'Voulez-vous vraiment supprimer cette ligne?',
                                                   'Succés',

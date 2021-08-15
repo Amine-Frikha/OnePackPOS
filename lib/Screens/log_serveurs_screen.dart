@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class LogServeurScreen extends StatefulWidget {
@@ -31,26 +32,25 @@ class _LogServeurScreenState extends State<LogServeurScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Header(title: 'Log des serveurs'),
+                    SizedBox(
+                      height: 40,
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search),
+                                hintText: 'Recherche...'),
                           ),
-                        ),
-                        Text(
-                          "Log Des serveurs",
-                          style: Theme.of(context).textTheme.headline6,
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 15,
                     ),
                     Container(
                       color: secondaryColor,

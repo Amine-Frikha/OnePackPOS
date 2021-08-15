@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class GestionAchatScreen extends StatefulWidget {
@@ -31,26 +32,63 @@ class _GestionAchatScreenState extends State<GestionAchatScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Header(title: 'Gestion Des Achats'),
+                    SizedBox(
+                      height: 40,
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextButton(
+                        ElevatedButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: primaryColor.withOpacity(0.9),
+                            primary: primaryColor,
+                            textStyle: const TextStyle(fontSize: 17),
+                          ),
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            _selectDate(context);
                           },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
+                          child: Text(
+                            "date de debut",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        Text(
-                          "Gestion Des Achats",
-                          style: Theme.of(context).textTheme.headline6,
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: primaryColor.withOpacity(0.9),
+                            primary: primaryColor,
+                            textStyle: const TextStyle(fontSize: 17),
+                          ),
+                          onPressed: () {
+                            _selectDate(context);
+                          },
+                          child: Text(
+                            "date de fin",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.search),
+                                hintText: 'Recherche...'),
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 15,
                     ),
                     Expanded(
                       child: SingleChildScrollView(
@@ -166,7 +204,6 @@ class _GestionAchatScreenState extends State<GestionAchatScreen> {
                                                     PopUp
                                                         .buildDoublePopupDialog(
                                                   context,
-                                                  2,
                                                   'Confirmer votre action',
                                                   'Voulez-vous vraiment supprimer cette ligne?',
                                                   'Succés',
@@ -223,6 +260,20 @@ class _GestionAchatScreenState extends State<GestionAchatScreen> {
         ),
       ),
     );
+  }
+
+  DateTime selectedDate = DateTime.now();
+  _selectDate(BuildContext context) async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2010),
+      lastDate: DateTime(2025),
+    );
+    if (selected != null && selected != selectedDate)
+      setState(() {
+        selectedDate = selected;
+      });
   }
 
   static Widget buildPopupDialogFormAchat(

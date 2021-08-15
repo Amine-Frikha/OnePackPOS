@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:onepack/Screens/calc_screen.dart';
 import 'package:onepack/Screens/fournisseur_screen.dart';
 import 'Models/FuncListDashboard.dart';
+import 'Screens/commande_screen.dart';
 import 'Screens/log_serveurs_screen.dart';
 import 'Widgets/dashboard_builder.dart';
 import 'Screens/gestion_achat_screen.dart';
@@ -38,7 +39,13 @@ class MyApp extends StatelessWidget {
         '/Notes': (context) => NoteScreen(),
         '/Calc': (context) => CalcApp(),
         '/Stock': (context) => StockScreen(),
+        '/Personnel': (context) => DashboardBuilder(
+              title: 'Personnel',
+              titleList: funcListPersonnelTitle,
+              iconList: funcListPersonnelIcon,
+            ),
         '/Session': (context) => SessionScreen(),
+        '/Commandes': (context) => CommandeScreen(),
         '/Statistiques': (context) => DashboardBuilder(
               title: 'Statistiques',
               titleList: funcListStatTitle,

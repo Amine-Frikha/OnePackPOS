@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class VenteScreen extends StatefulWidget {
@@ -31,24 +32,7 @@ class _VenteScreenState extends State<VenteScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
-                          ),
-                        ),
-                        Text(
-                          "Historique Des Ventes",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+                    Header(title: 'Historique des ventes'),
                     SizedBox(
                       height: 40,
                     ),
@@ -72,7 +56,7 @@ class _VenteScreenState extends State<VenteScreen> {
                           ),
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 10,
                         ),
                         ElevatedButton(
                           style: TextButton.styleFrom(
@@ -91,7 +75,7 @@ class _VenteScreenState extends State<VenteScreen> {
                           ),
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 30,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.2,
@@ -102,6 +86,9 @@ class _VenteScreenState extends State<VenteScreen> {
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 15,
                     ),
                     Flexible(
                       child: Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onepack/Widgets/custom_widgets.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class DashboardBuilder extends StatefulWidget {
@@ -37,27 +38,9 @@ class _DashboardBuilderState extends State<DashboardBuilder> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        if (ModalRoute.of(context)!.settings.name != '/Home')
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: primaryColor,
-                            ),
-                          ),
-                        Text(
-                          "${widget.title}",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+                    Header(title: widget.title),
                     SizedBox(
-                      height: 40,
+                      height: 62,
                     ),
                     Expanded(
                       child: GridView.builder(

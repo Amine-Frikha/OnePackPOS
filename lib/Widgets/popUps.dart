@@ -36,7 +36,6 @@ class PopUp {
 
   static Widget buildDoublePopupDialog(
     BuildContext context,
-    int numberOfButtons,
     String title1,
     String text1,
     String title2,
@@ -58,22 +57,21 @@ class PopUp {
           },
           child: const Text('Fermer'),
         ),
-        if (numberOfButtons == 2)
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => PopUp.buildPopupDialog(
-                  context,
-                  1,
-                  title2,
-                  text2,
-                ),
-              );
-            },
-            child: const Text('Confirmer'),
-          ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => PopUp.buildPopupDialog(
+                context,
+                1,
+                title2,
+                text2,
+              ),
+            );
+          },
+          child: const Text('Confirmer'),
+        ),
       ],
     );
   }

@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class StockScreen extends StatefulWidget {
@@ -31,24 +32,7 @@ class _StockScreenState extends State<StockScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
-                          ),
-                        ),
-                        Text(
-                          "Gestion De Stock",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+                    Header(title: 'Gestion de stock'),
                     SizedBox(
                       height: 40,
                     ),
@@ -126,7 +110,6 @@ class _StockScreenState extends State<StockScreen> {
                                                     PopUp
                                                         .buildDoublePopupDialog(
                                                   context,
-                                                  2,
                                                   'Confirmer votre action',
                                                   'Voulez-vous vraiment supprimer cette ligne?',
                                                   'Succés',
@@ -157,7 +140,7 @@ class _StockScreenState extends State<StockScreen> {
                           style: TextButton.styleFrom(
                             backgroundColor: primaryColor.withOpacity(0.9),
                             primary: primaryColor,
-                            textStyle: const TextStyle(fontSize: 17),
+                            textStyle: TextStyle(fontSize: 17),
                           ),
                           onPressed: () {
                             showDialog(

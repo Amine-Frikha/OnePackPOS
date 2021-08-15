@@ -1,7 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:onepack/Widgets/popUp.dart';
-import 'package:onepack/Widgets/side_menu.dart';
+import 'package:onepack/Components/header.dart';
+import 'package:onepack/Widgets/popUps.dart';
+import 'package:onepack/Components/side_menu.dart';
 import 'package:onepack/global/constants.dart';
 
 class SessionScreen extends StatefulWidget {
@@ -31,24 +32,7 @@ class _SessionScreenState extends State<SessionScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: primaryColor,
-                          ),
-                        ),
-                        Text(
-                          "Demandes De Fin De Service",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      ],
-                    ),
+                    Header(title: 'Demandes de fin de service'),
                     SizedBox(
                       height: 40,
                     ),
@@ -101,7 +85,6 @@ class _SessionScreenState extends State<SessionScreen> {
                                             builder: (BuildContext context) =>
                                                 PopUp.buildDoublePopupDialog(
                                               context,
-                                              2,
                                               'Confirmer votre action',
                                               'Voulez-vous vraiment accepter la demande?',
                                               'Succés',
@@ -125,7 +108,6 @@ class _SessionScreenState extends State<SessionScreen> {
                                             builder: (BuildContext context) =>
                                                 PopUp.buildDoublePopupDialog(
                                               context,
-                                              2,
                                               'Confirmer votre action',
                                               'Voulez-vous vraiment accepter la demande?',
                                               'Succés',
